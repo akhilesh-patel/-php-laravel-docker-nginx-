@@ -1,5 +1,6 @@
 # Use official PHP 8.3 FPM image
 FROM php:8.3-fpm
+
 # Set working directory
 WORKDIR /var/www
 # Install system dependencies and required PHP extensions in a single RUN
@@ -11,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd mbstring pdo pdo_mysql zip bcmath exif pcntl fileinfo opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install Composer globally
+COPY composer.json composer.lock ./
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy Laravel project files
 COPY . .
@@ -23,7 +25,8 @@ USER www-data
 # Install Laravel dependencies
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 # Pre-cache configurations for performance
-RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
+
+RUN if [ -f ./cache-clear.sh ]; then ./cache-clear.sh; fi
 # Expose PHP-FPM port
 EXPOSE 9000
 # Start PHP-FPM
