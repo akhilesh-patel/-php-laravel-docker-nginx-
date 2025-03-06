@@ -17,7 +17,8 @@ Place your laravel_db.sql file inside the db_backup directory and run
 docker exec -i mysql_container mysql -h 127.0.0.1 -P 3306 -u root -proot laravel_db
 
 4. Uncomment Cache Clear Script
-After importing the SQL file, make sure to uncomment the following line in the Dockerfil
+After importing the SQL file, make sure to uncomment the following line in the Dockerfile
+
 RUN if [ -f ./cache-clear.sh ]; then ./cache-clear.sh; fi
 
 6. Stop the Docker Containers
