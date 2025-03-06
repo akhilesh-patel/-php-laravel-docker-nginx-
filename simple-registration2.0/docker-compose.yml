@@ -15,14 +15,14 @@ services:
     env_file:
       - ./env_config/laravel_env/.env  # ✅ Loads variables into the container
     volumes:
-      - ../env_config/laravel_env/.env:/var/www/.env  # ✅ Mount .env file correctly
+      - ./env_config/laravel_env/.env:/var/www/.env  # ✅ Mount .env file correctly
 
   mysql:
     image: mysql:8
     container_name: mysql_container
     restart: always
     env_file:
-      - ../config/mysql_env/.env  # ✅ Loads MySQL env variables
+      - ./env_config/mysql_env/.env  # ✅ Loads MySQL env variables
     ports:
       - "3306:3306"
     networks:

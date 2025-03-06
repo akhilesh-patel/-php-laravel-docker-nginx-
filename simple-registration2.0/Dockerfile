@@ -26,7 +26,7 @@ USER www-data
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 # Pre-cache configurations for performance
 
-RUN if [ -f ./cache-clear.sh ]; then ./cache-clear.sh; fi
+#RUN if [ -f ./cache-clear.sh ]; then ./cache-clear.sh; fi
 # Expose PHP-FPM port
 EXPOSE 9000
 # Start PHP-FPM
