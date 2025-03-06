@@ -14,7 +14,7 @@ docker-compose up --build -d
 
 3. Import SQL File into the Database
 Place your laravel_db.sql file inside the db_backup directory and run
-  docker exec -i mysql_container mysql -u root -proot -h localhost laravel_db < ./db_backup/laravel_db.sql
+  docker exec -i mysql_container mysql -h 127.0.0.1 -P 3306 -u root -proot laravel_db < ./db_backup/laravel_db.sql
 
 4. Uncomment Cache Clear Script
 After importing the SQL file, make sure to uncomment the following line in the Dockerfile
