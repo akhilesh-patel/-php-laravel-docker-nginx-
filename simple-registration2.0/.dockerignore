@@ -1,5 +1,7 @@
 # Ignore node modules and dependencies
 node_modules/
+./scan.txt
+./Dockerfile
 vendor/
 ./k8s
 ./db_backup
