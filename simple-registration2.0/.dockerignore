@@ -1,7 +1,9 @@
 # Ignore node modules and dependencies
 node_modules/
 vendor/
-
+./k8s
+./db_backup
+docker-compose.yml
 # Ignore environment files (should not be in the image)
 .env
 .env.local
@@ -30,10 +32,7 @@ Thumbs.db
 .idea/
 *.swp
 
-# Ignore Git and deployment files
-.git/
-.gitignore
-.github/
+
 
 # Ignore Docker-related files
 #docker-compose.yml
