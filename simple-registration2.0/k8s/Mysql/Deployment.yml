@@ -1,8 +1,8 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
+  namespace: laravel-app
 spec:
   replicas: 1
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: mysql:8  # Updated to MySQL 8.0
+          image: mysql:8
           ports:
             - containerPort: 3306
           env:
@@ -26,5 +26,11 @@ spec:
             - name: MYSQL_PASSWORD
               value: "password"
             - name: MYSQL_ROOT_PASSWORD
-              value: "rootpassword"  # Change this for security
-  
+              value: "rootpassword"
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pvc

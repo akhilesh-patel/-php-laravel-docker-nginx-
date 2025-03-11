@@ -24,3 +24,9 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 // Logout route
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+Route::get('/name', function () {
+    return response()->json(['message' => 'API route working! Akhilesh Patel Brother of Hari Shankar Patel...Hello Hari Shankar Patel !123']);
+});
+
